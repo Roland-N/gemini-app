@@ -43,21 +43,6 @@ chat_session = model.start_chat(
 
 
 # Path to the PDF file in the cloned repository
-pdf_file_path = './gemini-app/Documentation_test.pdf'
-
-# Function to extract text from a PDF
-def extract_text_from_pdf(pdf_path):
-    text = ""
-    with open(pdf_path, 'rb') as file:
-        reader = PyPDF2.PdfFileReader(file)
-        for page_num in range(reader.numPages):
-            page = reader.getPage(page_num)
-            text += page.extract_text()
-    return text
-
-# Extract text from the PDF
-pdf_text = extract_text_from_pdf(pdf_file_path)
-print(pdf_text)  # Check the extracted text
 
 
 
@@ -65,3 +50,32 @@ if button and user_prompt:
     response = chat_session.send_message(user_prompt)
     st.subheader("Svar: ")
     st.markdown(response.text)
+
+
+
+# Function to extract text from PDF
+def read_pdf(file):
+    pdf_reader = PyPDF2.PdfReader(file)
+    num_pages = len(pdf_reader.pages)
+    content = ""
+    for page_num in range(num_pages):
+        content += pdf_reader.pages[page_num].extract_text()
+    return content
+
+# Streamlit app
+def main():
+    st.title("PDF Text Extractor")
+
+    # File upload
+    file = st.file_uploader("Upload a PDF file", type="pdf")
+
+    if file is not None:
+        # Read PDF and extract text
+        content = read_pdf(file)
+
+        # Display the content
+        st.subheader("Extracted Text:")
+        st.text(content)
+
+if __name__ == "__main__":
+    main()
