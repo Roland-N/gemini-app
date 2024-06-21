@@ -45,4 +45,4 @@ if btn and user_quest:
     # result = LLM_Response(user_quest)
     response = chat_session.send_message(user_quest)
     st.subheader("Svar: ")
-    st.text_area("Response", response.text, height=1600)
+    st.markdown(response.text)
