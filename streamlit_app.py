@@ -38,10 +38,13 @@ chat_session = model.start_chat(
   ]
 )
 
-
+document1 = Part.from_data(
+    mime_type="application/pdf",
+    data="Documentation_test.pdf"
+)
 
 
 if button and user_prompt:
-    response = chat_session.send_message(user_prompt)
+    response = chat_session.send_message([document1, user_prompt])
     st.subheader("Svar: ")
     st.markdown(response.text)
