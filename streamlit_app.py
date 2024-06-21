@@ -37,9 +37,7 @@ st.title('Learning Made Easy')
 pdf_file = st.file_uploader("Upload a PDF", type=["pdf"])
 if pdf_file is not None:
     text = pdf_to_text(pdf_file)
-    if st.button('Simplify Content'):
-        simplified_text = simplify_text(text)
-        st.write(simplified_text)
+
 
 
 instruction_prompt = st.text_input("System instructions")
