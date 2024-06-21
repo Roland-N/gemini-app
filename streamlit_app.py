@@ -22,9 +22,8 @@ def LLM_Response(question):
 
 user_quest = st.text_input("Ask a question:")
 btn = st.button("Ask")
-instructions = string(user_quest)
 if btn and user_quest:
-    result = LLM_Response("Act as a witty comedian and write a joke about this topic: " + instructions)
+    result = LLM_Response(string("Act as a witty comedian and write a joke about this topic: ") + instructions)
     st.subheader("Response : ")
     for word in result:
         st.text(word.text)
