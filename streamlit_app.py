@@ -5,7 +5,8 @@ import streamlit as st
 import fitz  # PyMuPDF
 
 
-
+st.markdown("# Page 2 ❄️")
+st.sidebar.markdown("# Page 2 ❄️")
 
 with st.sidebar:
     gemini_api_key = st.text_input("Gemini API Key", key="chatbot_api_key", type="password")
