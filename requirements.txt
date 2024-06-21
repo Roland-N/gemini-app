@@ -2,3 +2,4 @@ altair
 pandas
 streamlit
 google-generativeai
+PyPDF2
