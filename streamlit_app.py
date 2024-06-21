@@ -1,5 +1,5 @@
 import google.generativeai as genai
-
+#https://medium.com/@speaktoharisudhan/building-a-gemini-powered-chatbot-in-streamlit-e241ed5958c4
 #from openai import OpenAI
 import streamlit as st
 
