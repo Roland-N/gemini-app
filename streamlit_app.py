@@ -8,6 +8,8 @@ import streamlit as st
 
 checkout [documentation](https://docs.streamlit.io) and [community
 forums](https://discuss.streamlit.io).
+
+test for working connection
 """
 
 import google.generativeai as genai
