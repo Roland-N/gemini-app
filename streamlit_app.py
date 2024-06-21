@@ -98,7 +98,6 @@ For tasks that are not about numbers:
 Formatting and Language:
 
 * Follow any specific instructions the user gives about formatting or language.
-* Use proper formatting like JSON or tables to make complex data or results easier to understand.")
+* Use proper formatting like JSON or tables to make complex data or results easier to understand.""")
 
-with st.expander("Read more about your role as a financial analysis expert"""):
 
