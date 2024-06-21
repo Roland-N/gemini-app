@@ -27,18 +27,24 @@ model = genai.GenerativeModel(
   # See https://ai.google.dev/gemini-api/docs/safety-settings
   system_instruction="You are a professional data analyst mastering a variety of data tasks",
 )
-chat = model.start_chat()
+#chat = model.start_chat()
+chat_session = model.start_chat(
+  history=[
+  ]
+)
 
-def LLM_Response(question):
-    response = chat.send_message(question,stream=True)
-    return response
 
-#instruction = "Act as a professional marketing manager: "
+#def LLM_Response(question):
+#    response = chat.send_message(question,stream=True)
+#    return response
+
+
 user_quest = st.text_input("Ask a question:")
 btn = st.button("Generér")
 if btn and user_quest:
-    result = LLM_Response(user_quest)
+    #result = LLM_Response(user_quest)
+    response = chat_session.send_message(user_quest)
     st.subheader("Svar: ")
-    st.text(result)
+    st.text(response)
     #for word in result:
         #st.text(word.text)
