@@ -13,9 +13,6 @@ with st.sidebar:
     #"[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/Roland-N/gemini-app/blob/main/streamlit_app.py)"
 
-    st.markdown("# Page 2 ❄️")
-    st.sidebar.markdown("# Page 2 ❄️")
-
 
 
 st.title("💬 Gemini Pro Assistant")
@@ -44,7 +41,7 @@ else:
 
 
 
-options = ["You are an expert creative writer, and your job is to help the user with creativity-related tasks. These may be long-form writing tasks, content creation, conversation-related tasks, role-playing, or others. While crafting your answers, emphasize a range of approaches, distinct stylistic choices, and imaginative solutions, all grounded in factual correctness. Feel free to elaborate with your responses but make sure you stay on topic.", "", "Option 3"]
+options = ["option 1", "option 2", "Option 3"]
 
 # Create the dropdown
 selected_option = st.selectbox("Vælg en system instruktion:", options)
