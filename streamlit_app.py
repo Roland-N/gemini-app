@@ -19,12 +19,18 @@ generation_config = {
   "max_output_tokens": 500,
   "response_mime_type": "text/plain",
 }
+
+instruction_prompt = st.text_input("System instructions")
+user_prompt = st.text_input("Ask a question:")
+button = st.button("Generér")
+
+
 model = genai.GenerativeModel(
   model_name="gemini-1.5-flash",
   generation_config=generation_config,
   # safety_settings = Adjust safety settings
   # See https://ai.google.dev/gemini-api/docs/safety-settings
-  system_instruction="You are a professional data analyst mastering a variety of data tasks",
+  system_instruction= instruction_prompt,
 )
 #chat = model.start_chat()
 chat_session = model.start_chat(
@@ -34,15 +40,8 @@ chat_session = model.start_chat(
 
 
 
-user_quest = st.text_input("Ask a question:")
-btn = st.button("Generér")
-#if btn and user_quest:
-    #result = LLM_Response(user_quest)
-   # response = chat_session.send_message(user_quest)
-   # st.subheader("Svar: ")
-    #st.text(response.text)
-if btn and user_quest:
-    # result = LLM_Response(user_quest)
-    response = chat_session.send_message(user_quest)
+
+if button and user_quest:
+    response = chat_session.send_message(user_prompt)
     st.subheader("Svar: ")
     st.markdown(response.text)
