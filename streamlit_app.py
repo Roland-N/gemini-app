@@ -72,7 +72,7 @@ chat_session = model.start_chat(
 
 
 if button and user_prompt:
-    response = chat_session.send_message(content2)
+    response = chat_session.send_message(text)
     st.subheader("Svar: ")
     st.markdown(response.text)
 
