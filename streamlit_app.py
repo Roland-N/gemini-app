@@ -38,7 +38,7 @@ if pdf_file is not None:
     text = pdf_to_text(pdf_file)
 
 else:
-text = ""
+    text = ""
 
 
 
