@@ -40,9 +40,6 @@ def main():
         # Display the content
         st.subheader("Extracted Text:")
         #st.markdown(content)
-        content2 = st.text_input(content)
-        st.text(content)
-
 if __name__ == "__main__":
     main()
 
