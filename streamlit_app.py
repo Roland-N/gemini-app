@@ -10,8 +10,8 @@ with st.sidebar:
     "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
 
-st.title("💬 Chatbot")
-st.caption("🚀 A Streamlit chatbot powered by OpenAI")
+st.title("💬 Gemini Pro Assistant")
+st.caption("🚀 A Streamlit chatbot powered by Gemini")
 model = genai.GenerativeModel("gemini-1.5-flash") 
 chat = model.start_chat()
 
@@ -19,7 +19,6 @@ def LLM_Response(question):
     response = chat.send_message(question,stream=True)
     return response
 
-st.title("Chat Application using Gemini Pro")
 
 user_quest = st.text_input("Ask a question:")
 btn = st.button("Ask")
