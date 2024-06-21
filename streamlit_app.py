@@ -12,18 +12,32 @@ with st.sidebar:
 
 st.title("💬 Gemini Pro Assistant")
 st.caption("🚀 A Streamlit chatbot powered by Gemini")
-model = genai.GenerativeModel("gemini-1.5-flash") 
+#model = genai.GenerativeModel("gemini-1.5-flash") 
+generation_config = {
+  "temperature": 1,
+  #"top_p": 0.95,
+  #"top_k": 64,
+  "max_output_tokens": 500,
+  "response_mime_type": "text/plain",
+}
+model = genai.GenerativeModel(
+  model_name="gemini-1.5-flash",
+  generation_config=generation_config,
+  # safety_settings = Adjust safety settings
+  # See https://ai.google.dev/gemini-api/docs/safety-settings
+  system_instruction="You are a professional data analyst mastering a variety of data tasks",
+)
 chat = model.start_chat()
 
 def LLM_Response(question):
     response = chat.send_message(question,stream=True)
     return response
 
-instruction = "Act as a professional marketing manager: "
+#instruction = "Act as a professional marketing manager: "
 user_quest = st.text_input("Ask a question:")
 btn = st.button("Generér")
 if btn and user_quest:
-    result = LLM_Response(instruction + user_quest)
+    result = LLM_Response(user_quest)
     st.subheader("Svar : ")
     for word in result:
         st.text(word.text)
