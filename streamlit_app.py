@@ -5,7 +5,8 @@ import streamlit as st
 import fitz  # PyMuPDF
 
 
-
+st.markdown("# Page 2 ❄️")
+st.sidebar.markdown("# Page 2 ❄️")
 
 with st.sidebar:
     gemini_api_key = st.text_input("Gemini API Key", key="chatbot_api_key", type="password")
@@ -42,7 +43,10 @@ else:
 
 
 
-instruction_prompt = st.text_input("System instructions")
+options = ["You are an expert creative writer, and your job is to help the user with creativity-related tasks. These may be long-form writing tasks, content creation, conversation-related tasks, role-playing, or others. While crafting your answers, emphasize a range of approaches, distinct stylistic choices, and imaginative solutions, all grounded in factual correctness. Feel free to elaborate with your responses but make sure you stay on topic.", "", "Option 3"]
+
+# Create the dropdown
+selected_option = st.selectbox("Vælg en system instruktion:", options)
 user_prompt = st.text_input("User prompt:")
 button = st.button("Generate")
 temperature = st.slider("Model temperature", 0.0, 2.0, 0.3, step=0.1)
