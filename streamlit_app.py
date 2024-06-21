@@ -1,4 +1,4 @@
-!pip install google-generativeai
+pip install google-generativeai
 import google.generativeai as genai
 
 from openai import OpenAI
