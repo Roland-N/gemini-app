@@ -2,6 +2,8 @@ import google.generativeai as genai
 #https://medium.com/@speaktoharisudhan/building-a-gemini-powered-chatbot-in-streamlit-e241ed5958c4
 #from openai import OpenAI
 import streamlit as st
+import PyPDF2
+
 
 with st.sidebar:
     gemini_api_key = st.text_input("Gemini API Key", key="chatbot_api_key", type="password")
@@ -38,13 +40,27 @@ chat_session = model.start_chat(
   ]
 )
 
-document1 = Part.from_data(
-    mime_type="application/pdf",
-    data="Documentation_test.pdf"
-)
+
+# Path to the PDF file in the cloned repository
+pdf_file_path = './gemini-app/Documentation_test.pdf'
+
+# Function to extract text from a PDF
+def extract_text_from_pdf(pdf_path):
+    text = ""
+    with open(pdf_path, 'rb') as file:
+        reader = PyPDF2.PdfFileReader(file)
+        for page_num in range(reader.numPages):
+            page = reader.getPage(page_num)
+            text += page.extract_text()
+    return text
+
+# Extract text from the PDF
+pdf_text = extract_text_from_pdf(pdf_file_path)
+print(pdf_text)  # Check the extracted text
+
 
 
 if button and user_prompt:
-    response = chat_session.send_message([document1, user_prompt])
+    response = chat_session.send_message(user_prompt)
     st.subheader("Svar: ")
     st.markdown(response.text)
