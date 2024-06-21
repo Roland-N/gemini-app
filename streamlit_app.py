@@ -2,7 +2,7 @@ import google.generativeai as genai
 #https://medium.com/@speaktoharisudhan/building-a-gemini-powered-chatbot-in-streamlit-e241ed5958c4
 #from openai import OpenAI
 import streamlit as st
-import PyPDF2
+import fitz  # PyMuPDF
 
 
 
@@ -19,29 +19,26 @@ st.title("💬 Gemini Pro Assistant")
 st.caption("🚀 A Streamlit chatbot powered by Gemini")
 
 
-# Function to extract text from PDF
-def read_pdf(file):
-    pdf_reader = PyPDF2.PdfReader(file)
-    num_pages = len(pdf_reader.pages)
-    content = ""
-    for page_num in range(num_pages):
-        content += pdf_reader.pages[page_num].extract_text()
-    return content
 
-# Streamlit app
-def main():
-    # File upload
-    file = st.file_uploader("Upload a PDF file", type="pdf")
+def pdf_to_text(uploaded_file):
+    # Upload to streamlit
+    # Read the PDF file into bytes
+    pdf_bytes = uploaded_file.getvalue()
+    # Open the PDF with PyMuPDF (fitz) using the bytes
+    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+    text = ""
+    for page in doc:
+        text += page.get_text()
+    return text
 
-    if file is not None:
-        # Read PDF and extract text
-        content = read_pdf(file)
+st.title('Learning Made Easy')
 
-        # Display the content
-        st.subheader("Extracted Text:")
-        #st.markdown(content)
-if __name__ == "__main__":
-    main()
+pdf_file = st.file_uploader("Upload a PDF", type=["pdf"])
+if pdf_file is not None:
+    text = pdf_to_text(pdf_file)
+    if st.button('Simplify Content'):
+        simplified_text = simplify_text(text)
+        st.write(simplified_text)
 
 
 instruction_prompt = st.text_input("System instructions")
