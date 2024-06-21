@@ -8,7 +8,7 @@ with st.sidebar:
     genai.configure(api_key= gemini_api_key)
     "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
     "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
-    "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
+    "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/Roland-N/gemini-app/blob/main/streamlit_app.py)"
 
 st.title("💬 Gemini Pro Assistant")
 st.caption("🚀 A Streamlit chatbot powered by Gemini")
