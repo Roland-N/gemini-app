@@ -44,7 +44,7 @@ user_prompt = st.text_input("User prompt:")
 button = st.button("Generate")
 temperature = st.slider(
     "Select a range of values",
-    0.0, 2.0, (25.0, 75.0))
+    0.0, 2.0, (0.3))
 st.write("Temperature:", temperature)
 
 
