@@ -38,6 +38,7 @@ user_quest = st.text_input("Ask a question:")
 btn = st.button("Generér")
 if btn and user_quest:
     result = LLM_Response(user_quest)
-    st.subheader("Svar : ")
-    for word in result:
-        st.text(word.text)
+    st.subheader("Svar: ")
+    st.text(result)
+    #for word in result:
+        #st.text(word.text)
