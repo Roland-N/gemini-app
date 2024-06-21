@@ -33,18 +33,16 @@ chat_session = model.start_chat(
 )
 
 
-#def LLM_Response(question):
-#    response = chat.send_message(question,stream=True)
-#    return response
-
 
 user_quest = st.text_input("Ask a question:")
 btn = st.button("Generér")
-if btn and user_quest:
+#if btn and user_quest:
     #result = LLM_Response(user_quest)
+   # response = chat_session.send_message(user_quest)
+   # st.subheader("Svar: ")
+    #st.text(response.text)
+if btn and user_quest:
+    # result = LLM_Response(user_quest)
     response = chat_session.send_message(user_quest)
     st.subheader("Svar: ")
-    st.text(response.text)
-    #st.text(response)
-    #for word in result:
-        #st.text(word.text)
+    st.text_area("Response", response.text, height=1600)
