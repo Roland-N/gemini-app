@@ -37,6 +37,9 @@ pdf_file = st.file_uploader("Upload a PDF", type=["pdf"])
 if pdf_file is not None:
     text = pdf_to_text(pdf_file)
 
+else 
+text = ""
+
 
 
 instruction_prompt = st.text_input("System instructions")
