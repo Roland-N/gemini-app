@@ -40,15 +40,15 @@ if pdf_file is not None:
 
 
 instruction_prompt = st.text_input("System instructions")
-user_prompt = st.text_input("Ask a question:")
-button = st.button("Generér")
+user_prompt = st.text_input("User prompt:")
+button = st.button("Generate")
 
 #model = genai.GenerativeModel("gemini-1.5-flash") 
 generation_config = {
   "temperature": 1,
   #"top_p": 0.95,
   #"top_k": 64,
-  "max_output_tokens": 500,
+  "max_output_tokens": 2500,
   "response_mime_type": "text/plain",
 }
 
