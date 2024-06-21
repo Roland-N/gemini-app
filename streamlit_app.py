@@ -40,6 +40,7 @@ def main():
         # Display the content
         st.subheader("Extracted Text:")
         #st.markdown(content)
+        content2 = st.text(content)
         st.text(content)
 
 if __name__ == "__main__":
@@ -78,7 +79,7 @@ chat_session = model.start_chat(
 
 
 if button and user_prompt:
-    response = chat_session.send_message(content.text)
+    response = chat_session.send_message(content2)
     st.subheader("Svar: ")
     st.markdown(response.text)
 
