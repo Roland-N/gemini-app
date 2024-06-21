@@ -1,36 +1,29 @@
-import altair as alt
-import numpy as np
-import pandas as pd
+from openai import OpenAI
 import streamlit as st
 
-"""
-# Roland's Gemini Assistant
+with st.sidebar:
+    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+    "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
+    "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
+    "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
 
-checkout [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+st.title("💬 Chatbot")
+st.caption("🚀 A Streamlit chatbot powered by OpenAI")
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
-test for working connection
-"""
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
 
-import google.generativeai as genai
+if prompt := st.chat_input():
+    if not openai_api_key:
+        st.info("Please add your OpenAI API key to continue.")
+        st.stop()
 
-
-genai.configure(api_key = "AIzaSyAg3REDWkGV7hyVJpOlZjtj73CjQi37TcQ")
-
-model = genai.GenerativeModel("gemini-1.5-flash") 
-chat = model.start_chat()
-
-def LLM_Response(question):
-    response = chat.send_message(question,stream=True)
-    return response
-
-st.title("Chat Application using Gemini Pro")
-
-user_quest = st.text_input("Ask a question:")
-btn = st.button("Ask")
-
-if btn and user_quest:
-    result = LLM_Response(user_quest)
-    st.subheader("Response : ")
-    for word in result:
-        st.text(word.text)
+    client = OpenAI(api_key=openai_api_key)
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user").write(prompt)
+    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
+    msg = response.choices[0].message.content
+    st.session_state.messages.append({"role": "assistant", "content": msg})
+    st.chat_message("assistant").write(msg)
