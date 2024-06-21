@@ -12,8 +12,44 @@ with st.sidebar:
     #"[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/Roland-N/gemini-app/blob/main/streamlit_app.py)"
 
+
+
+
 st.title("💬 Gemini Pro Assistant")
 st.caption("🚀 A Streamlit chatbot powered by Gemini")
+
+
+# Function to extract text from PDF
+def read_pdf(file):
+    pdf_reader = PyPDF2.PdfReader(file)
+    num_pages = len(pdf_reader.pages)
+    content = ""
+    for page_num in range(num_pages):
+        content += pdf_reader.pages[page_num].extract_text()
+    return content
+
+# Streamlit app
+def main():
+    # File upload
+    file = st.file_uploader("Upload a PDF file", type="pdf")
+
+    if file is not None:
+        # Read PDF and extract text
+        content = read_pdf(file)
+
+        # Display the content
+        st.subheader("Extracted Text:")
+        #st.markdown(content)
+        st.text(content)
+
+if __name__ == "__main__":
+    main()
+
+
+instruction_prompt = st.text_input("System instructions")
+user_prompt = st.text_input("Ask a question:")
+button = st.button("Generér")
+
 #model = genai.GenerativeModel("gemini-1.5-flash") 
 generation_config = {
   "temperature": 1,
@@ -22,11 +58,6 @@ generation_config = {
   "max_output_tokens": 500,
   "response_mime_type": "text/plain",
 }
-
-instruction_prompt = st.text_input("System instructions")
-user_prompt = st.text_input("Ask a question:")
-button = st.button("Generér")
-
 
 model = genai.GenerativeModel(
   model_name="gemini-1.5-flash",
@@ -47,35 +78,7 @@ chat_session = model.start_chat(
 
 
 if button and user_prompt:
-    response = chat_session.send_message(user_prompt)
+    response = chat_session.send_message(user_prompt + content)
     st.subheader("Svar: ")
     st.markdown(response.text)
 
-
-
-# Function to extract text from PDF
-def read_pdf(file):
-    pdf_reader = PyPDF2.PdfReader(file)
-    num_pages = len(pdf_reader.pages)
-    content = ""
-    for page_num in range(num_pages):
-        content += pdf_reader.pages[page_num].extract_text()
-    return content
-
-# Streamlit app
-def main():
-    st.title("PDF Text Extractor")
-
-    # File upload
-    file = st.file_uploader("Upload a PDF file", type="pdf")
-
-    if file is not None:
-        # Read PDF and extract text
-        content = read_pdf(file)
-
-        # Display the content
-        st.subheader("Extracted Text:")
-        st.markdown(content)
-
-if __name__ == "__main__":
-    main()
