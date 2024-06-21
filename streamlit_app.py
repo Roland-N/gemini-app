@@ -45,7 +45,7 @@ else:
 instruction_prompt = st.text_input("System instructions")
 user_prompt = st.text_input("User prompt:")
 button = st.button("Generate")
-temperature = st.slider("How old are you?", 0.0, 2.0, 0.3, step=0.1)
+temperature = st.slider("Model temperature", 0.0, 2.0, 0.3, step=0.1)
 st.write("Temperature:", temperature)
 
 
