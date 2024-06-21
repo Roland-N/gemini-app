@@ -42,7 +42,11 @@ if pdf_file is not None:
 instruction_prompt = st.text_input("System instructions")
 user_prompt = st.text_input("User prompt:")
 button = st.button("Generate")
-temperature = st.slider('temperature', min_value=0.1, max_value=2)
+temperature = st.slider(
+    "Select a range of values",
+    0.0, 2.0, (25.0, 75.0))
+st.write("Temperature:", temperature)
+
 
 #model = genai.GenerativeModel("gemini-1.5-flash") 
 generation_config = {
