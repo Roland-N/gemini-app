@@ -32,7 +32,6 @@ def pdf_to_text(uploaded_file):
         text += page.get_text()
     return text
 
-st.title('Learning Made Easy')
 
 pdf_file = st.file_uploader("Upload a PDF", type=["pdf"])
 if pdf_file is not None:
