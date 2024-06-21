@@ -19,9 +19,9 @@ def LLM_Response(question):
     response = chat.send_message(question,stream=True)
     return response
 
-instruction = "Make a joke about topic: "
+instruction = "Act as a professional marketing manager: "
 user_quest = st.text_input("Ask a question:")
-btn = st.button("Ask")
+btn = st.button("Tema")
 if btn and user_quest:
     result = LLM_Response(instruction + user_quest)
     st.subheader("Response : ")
