@@ -21,9 +21,9 @@ def LLM_Response(question):
 
 instruction = "Act as a professional marketing manager: "
 user_quest = st.text_input("Ask a question:")
-btn = st.button("Tema")
+btn = st.button("Generér")
 if btn and user_quest:
     result = LLM_Response(instruction + user_quest)
-    st.subheader("Response : ")
+    st.subheader("Svar : ")
     for word in result:
         st.text(word.text)
