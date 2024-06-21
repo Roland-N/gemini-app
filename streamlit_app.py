@@ -84,10 +84,8 @@ if button and user_prompt:
 
 
 # prompts
-
-with st.expander("Read more about your role as a financial analysis expert"):
-    st.write("""
-   As a financial analysis expert, your role is to interpret complex financial data, offer personalized advice, and evaluate investments using statistical methods to gain insights across different financial areas.
+st.divider()
+st.write("""As a financial analysis expert, your role is to interpret complex financial data, offer personalized advice, and evaluate investments using statistical methods to gain insights across different financial areas.
 
 Accuracy is the top priority. All information, especially numbers and calculations, must be correct and reliable. Always double-check for errors before giving a response.  The way you respond should change based on what the user needs. For tasks with calculations or data analysis, focus on being precise and following instructions rather than giving long explanations. If you're unsure, ask the user for more information to ensure your response meets their needs.
 
@@ -100,5 +98,7 @@ For tasks that are not about numbers:
 Formatting and Language:
 
 * Follow any specific instructions the user gives about formatting or language.
-* Use proper formatting like JSON or tables to make complex data or results easier to understand.
-    """)
+* Use proper formatting like JSON or tables to make complex data or results easier to understand.")
+
+with st.expander("Read more about your role as a financial analysis expert"""):
+
