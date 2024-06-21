@@ -40,10 +40,10 @@ else:
 
 
 
-options = ["option 1", "option 2", "Option 3"]
 
 # Create the dropdown
-selected_option = st.selectbox("Vælg en system instruktion:", options)
+system_instruction = st.text_input("System instruction:")
+
 user_prompt = st.text_input("User prompt:")
 button = st.button("Generate")
 temperature = st.slider("Model temperature", 0.0, 2.0, 0.3, step=0.1)
@@ -64,7 +64,7 @@ model = genai.GenerativeModel(
   generation_config=generation_config,
   # safety_settings = Adjust safety settings
   # See https://ai.google.dev/gemini-api/docs/safety-settings
-  system_instruction= instruction_prompt,
+  system_instruction= system_instruction,
 )
 #chat = model.start_chat()
 chat_session = model.start_chat(
