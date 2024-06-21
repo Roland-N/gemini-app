@@ -45,7 +45,7 @@ if btn and user_quest:
     #result = LLM_Response(user_quest)
     response = chat_session.send_message(user_quest)
     st.subheader("Svar: ")
-    print(response.text)
+    st.text(response.text)
     #st.text(response)
     #for word in result:
         #st.text(word.text)
