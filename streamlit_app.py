@@ -75,7 +75,7 @@ def main():
 
         # Display the content
         st.subheader("Extracted Text:")
-        st.text(content)
+        st.markdown(content.text)
 
 if __name__ == "__main__":
     main()
